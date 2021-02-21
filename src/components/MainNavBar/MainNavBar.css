@@ -1,0 +1,9 @@
+.MuiBottomNavigation-root .MainNavBar-action
+{
+    color: white;
+}
+
+.MuiBottomNavigation-root .MainNavBar-action.Mui-selected
+{
+    color: coral;
+}

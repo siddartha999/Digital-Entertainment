@@ -1,0 +1,19 @@
+.App
+{
+  height: 100vh;
+  background-color: rgb(20, 20, 20);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.App .App-content-container
+{
+  position: absolute;
+  top: 7%;
+  height: 83%;
+  overflow-y: auto;
+  max-width: 100%;
+  padding: 0;
+}

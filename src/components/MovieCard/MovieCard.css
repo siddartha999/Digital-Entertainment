@@ -1,0 +1,10 @@
+.MovieCard
+{
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.MovieCard-image
+{
+    width: 100%;
+}
