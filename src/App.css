@@ -13,7 +13,7 @@
   position: absolute;
   top: 7%;
   height: 83%;
-  overflow-y: auto;
+  overflow: hidden;
   max-width: 100%;
   padding: 0;
 }

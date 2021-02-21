@@ -1,8 +1,10 @@
 .Genres
 {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    height: 10%;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
 .Genres .Genres-chip

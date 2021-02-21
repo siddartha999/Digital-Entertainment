@@ -1,12 +1,15 @@
 .Shows
 {
     width: 100%;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
 }
 
 .Shows-content-container
 {
     width: 100%;
+    height: 80%;
+    overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

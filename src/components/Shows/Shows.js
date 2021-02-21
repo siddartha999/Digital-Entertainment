@@ -7,7 +7,12 @@ import Genres from "../Genres/Genres";
 import genresAsString from "../../utils/genresString";
 
 const Shows = (props) => {
-    const isMovies = props.match.path.match("movies") ? true : false;
+    let isMovies;
+    const isSearchView = props.searchView;
+    if(!isSearchView)
+    {
+        isMovies = props.match.path.match("movies") ? true : false;
+    }
     const [content, setContent] = useState([]);
     const pageCount = useRef(1);
     const [page, setPage] = useState(1);
@@ -15,11 +20,14 @@ const Shows = (props) => {
     const [selectedGenres, setSelectedGenres] = useState(new Set());
     const genreURLSnippet = genresAsString(selectedGenres);
 
+    const SEARCH_URL = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${props.searchText}&page=${page}&include_adult=false`;
+    const SHOWS_URL = `https://api.themoviedb.org/3/discover/${isMovies ? "movie" : "tv"}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&page=${page}&with_genres=${genreURLSnippet}`;
+
+    /**
+     * Function to fetch the content(Movies / TV Shows / SearchText).
+    */
     const fetchShows = async () => {
-        const {data} = await axios.get(
-            `https://api.themoviedb.org/3/discover/${isMovies ? "movie" : "tv"}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&page=${page}&with_genres=${genreURLSnippet}`
-        );
-        console.log(data);
+        const {data} = await axios.get(isSearchView ? SEARCH_URL : SHOWS_URL);
         pageCount.current = data.total_pages || 1;
         setContent(data.results);
     };
@@ -29,17 +37,25 @@ const Shows = (props) => {
         // eslint-disable-next-line
     }, [page, genreURLSnippet]);
 
+    useEffect(() => {
+        fetchShows();
+        setPage(1);
+        // eslint-disable-next-line
+    }, [props.searchText]);
+
 
     return (
         <div className="Shows">
-            <Genres
-                isMovies={isMovies} 
-                selectedGenres={selectedGenres}
-                setSelectedGenres={setSelectedGenres}
-                genres={genres}
-                setGenres={setGenres}
-                setPage={setPage}
-            />
+            {!isSearchView &&  
+                <Genres
+                    isMovies={isMovies} 
+                    selectedGenres={selectedGenres}
+                    setSelectedGenres={setSelectedGenres}
+                    genres={genres}
+                    setGenres={setGenres}
+                    setPage={setPage}
+                />
+            }
              <div className="Shows-content-container">
                 {content && content.map(item => 
                     <MovieCard 

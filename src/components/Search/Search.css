@@ -1,0 +1,23 @@
+.Search
+{
+    height: 100%;
+}
+
+.Search .Search-Textfield-container
+{
+    margin: 10px;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Search-TextField
+{
+    width: 75%;
+    height: 100%;
+}
+
+.Search-content-container {
+    height: calc(90% - 20px);
+}
