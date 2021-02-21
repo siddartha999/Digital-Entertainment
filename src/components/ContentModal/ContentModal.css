@@ -1,0 +1,33 @@
+.ContentModal
+{
+    padding: 0.5rem 0;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ContentModal-wrapper-button
+{
+    cursor: pointer;
+}
+
+.ContentModal-image-wrapper
+{
+    height: 60%;
+}
+
+.ContentModal-image
+{
+    height: 100%;
+    object-fit: contain;
+}
+
+.ContentModal-details
+{
+    max-height: 15%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+}
