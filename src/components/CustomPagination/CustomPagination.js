@@ -18,7 +18,7 @@ const CustomPagination = (props) => {
     return (
         <div className="CustomPagination">
             <ThemeProvider theme={darkTheme}>
-            <Pagination count={props.pageCount || 1} color="secondary" onChange={handlePageChange}/>
+            <Pagination count={props.pageCount || 1} color="secondary" onChange={handlePageChange} page={props.page - 0}/>
             </ThemeProvider>
         </div>
     );
