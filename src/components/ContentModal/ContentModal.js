@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    width: "90%",
+    width: "80%",
     height: "80%",
     backgroundColor: "rgb(20, 20, 20)",
     border: "1px solid #282c34",
@@ -39,6 +39,7 @@ const ContentModal = (props) => {
   const [open, setOpen] = React.useState(false);
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
+  const [credits, setCredits] = useState([]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -68,9 +69,21 @@ const ContentModal = (props) => {
     setContent(data);
   };
 
+  /**
+   * Function to fetch the credits(actors) of a show.
+   */
+  const fetchCredits = async () => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${props.mediaType}/${props.id}/credits?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
+    );
+    console.log(data.cast);
+    setCredits(data.cast);
+  };
+
   useEffect(() => {
     fetchData();
     fetchVideoData();
+    fetchCredits();
     // eslint-disable-next-line
   }, []);
 
@@ -96,12 +109,25 @@ const ContentModal = (props) => {
         {content && (
               <div className={classes.paper}>
                 <div className="ContentModal">
-                  <div className="ContentModal-image-wrapper">
-                      <img
-                        src={content.poster_path ? `${img_300}/${content.poster_path}` : unavailable}
-                        alt={content.name || content.title}
-                        className="ContentModal-image"
-                      />
+                  <div className="ContentModal-header">
+                    <div className="ContentModal-poster-wrapper">
+                        <img
+                          src={content.poster_path ? `${img_300}/${content.poster_path}` : unavailable}
+                          alt={content.name || content.title}
+                          className="ContentModal-poster"
+                        />
+                    </div>
+                    <div className="ContentModal-credits-wrapper">
+                      {
+                        credits && credits.map(item => (
+                          <div className="ContentModal-credit-image-wrapper"> 
+                               <img src={item.profile_path ? `${img_300}/${item.profile_path}` : unavailable}
+                                  alt={item?.name}  key={item.id}  title={item?.original_name}                             
+                                />
+                          </div>
+                        ))
+                      }
+                    </div>
                   </div>
                   <div className="ContentModal-details">
                       <span className="ContentModal-details-title">

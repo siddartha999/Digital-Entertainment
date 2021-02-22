@@ -13,21 +13,59 @@
     cursor: pointer;
 }
 
-.ContentModal-image-wrapper
+.ContentModal-header
 {
     height: 60%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.ContentModal-image
+.ContentModal-poster-wrapper
 {
+    width: 50%;
+}
+
+.ContentModal-poster
+{
+    width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.ContentModal-credits-wrapper
+{
+    height: 100%;
+    width: 50%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ContentModal-credit-image-wrapper
+{
+    height: 50%;
+    padding: 0.25rem;
+}
+
+.ContentModal-credit-image-wrapper img
+{
+    height: 100%;
+    object-fit: contain
 }
 
 .ContentModal-details
 {
     max-height: 15%;
     overflow-x: hidden;
-    overflow-y: auto;
-    text-overflow: ellipsis;
+    overflow-y: auto;    
+    text-align: center;
+}
+
+.ContentModal-trailer-button-wrapper
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
