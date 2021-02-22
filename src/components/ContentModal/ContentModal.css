@@ -1,16 +1,23 @@
 .ContentModal
 {
-    padding: 0.5rem 0;
-    height: 100%;
+    padding: 1rem 0;
+    height: 60%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
+.ContentModal-Dialog .ContentModal
+{
+    height: 100%;
+}
 
 .ContentModal-wrapper-button
 {
     cursor: pointer;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
 }
 
 .ContentModal-header
@@ -68,4 +75,25 @@
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+
+@media only screen and (max-width: 835px)
+{
+    .ContentModal
+    {
+        padding: 1rem 0.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        height: 50%;
+        width: 40%;
+        object-fit: contain;
+    }
+
+    .ContentModal-Dialog .ContentModal
+    {
+        width: 100%;
+    }
 }

@@ -33,7 +33,7 @@ const Search = () => {
                 </ThemeProvider>
             </div>
             <div className="Search-content-container">
-                <Shows searchView searchText={searchText}/>
+               {searchText && <Shows searchView searchText={searchText}/>}
             </div>
         </div>
     );

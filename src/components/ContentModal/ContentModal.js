@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -9,11 +9,8 @@ import { Button } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 
 export const img_300 = "https://image.tmdb.org/t/p/w300";
-export const img_500 = "https://image.tmdb.org/t/p/w500";
 export const unavailable =
   "https://www.movienewz.com/img/films/poster-holder.jpg";
-export const unavailableLandscape =
-  "https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,8 +35,8 @@ const ContentModal = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [content, setContent] = useState();
-  const [video, setVideo] = useState();
-  const [credits, setCredits] = useState([]);
+  const video = useRef();
+  const credits = useRef([]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,7 +53,7 @@ const ContentModal = (props) => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${props.mediaType}/${props.id}/videos?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
     );
-    setVideo(data.results[0]?.key);
+    video.current = (data.results[0]?.key);
   };
 
   /**
@@ -76,14 +73,13 @@ const ContentModal = (props) => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${props.mediaType}/${props.id}/credits?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`
     );
-    console.log(data.cast);
-    setCredits(data.cast);
+    credits.current = (data.cast);
   };
 
   useEffect(() => {
+    fetchCredits();
     fetchData();
     fetchVideoData();
-    fetchCredits();
     // eslint-disable-next-line
   }, []);
 
@@ -107,7 +103,7 @@ const ContentModal = (props) => {
         <Fade in={open}>
 
         {content && (
-              <div className={classes.paper}>
+              <div className={`${classes.paper} ContentModal-Dialog`}>
                 <div className="ContentModal">
                   <div className="ContentModal-header">
                     <div className="ContentModal-poster-wrapper">
@@ -119,10 +115,10 @@ const ContentModal = (props) => {
                     </div>
                     <div className="ContentModal-credits-wrapper">
                       {
-                        credits && credits.map(item => (
-                          <div className="ContentModal-credit-image-wrapper"> 
+                        credits.current && credits.current.map(item => (
+                          <div className="ContentModal-credit-image-wrapper" key={item.id}> 
                                <img src={item.profile_path ? `${img_300}/${item.profile_path}` : unavailable}
-                                  alt={item?.name}  key={item.id}  title={item?.original_name}                             
+                                  alt={item?.name} title={item?.original_name}                             
                                 />
                           </div>
                         ))
@@ -137,10 +133,10 @@ const ContentModal = (props) => {
                           content.release_date ||
                           "-----"
                         ).substring(0, 4)}
-                        )
+                        )<br />
                       </span>
                     {content.tagline && (
-                      <i className="tagline">{", " + content.tagline + " "}</i>
+                      <i className="tagline">{" " + content.tagline + " "}<br /></i>
                     )}
 
                     <span className="ContentModal-details-description">
@@ -153,7 +149,7 @@ const ContentModal = (props) => {
                         startIcon={<YouTubeIcon />}
                         color="secondary"
                         target="__blank"
-                        href={`https://www.youtube.com/watch?v=${video}`}
+                        href={`https://www.youtube.com/watch?v=${video.current}`}
                       >
                         Watch the Trailer
                       </Button>

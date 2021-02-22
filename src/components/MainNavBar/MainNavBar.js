@@ -33,26 +33,26 @@ const MainNavBar = () => {
             showLabels
             className={classes.root}
         >
-        <BottomNavigationAction label="Trending" className="MainNavBar-action" icon={<WhatshotIcon />} 
-            component={NavLink}
-            to="/"
-            exact 
-          />
-        <BottomNavigationAction label="Movies" className="MainNavBar-action" icon={<MovieIcon />} 
-            component={NavLink}
-            to="/movies"
-            exact
-        />
-        <BottomNavigationAction label="Series" className="MainNavBar-action" icon={<TvIcon />} 
-            component={NavLink}
-            to="/series"
-            exact
-        />
-        <BottomNavigationAction label="Search" className="MainNavBar-action" icon={<SearchIcon />} 
-            component={NavLink}
-            to="/search"
-            exact
-        />
+                <BottomNavigationAction label="Trending" className="MainNavBar-action" icon={<WhatshotIcon />} 
+                    component={NavLink}
+                    to="/"
+                    exact 
+                />
+                <BottomNavigationAction label="Movies" className="MainNavBar-action" icon={<MovieIcon />} 
+                    component={NavLink}
+                    to="/movies"
+                    exact
+                />
+                <BottomNavigationAction label="Series" className="MainNavBar-action" icon={<TvIcon />} 
+                    component={NavLink}
+                    to="/series"
+                    exact
+                />
+                <BottomNavigationAction label="Search" className="MainNavBar-action" icon={<SearchIcon />} 
+                    component={NavLink}
+                    to="/search"
+                    exact
+                />
         </BottomNavigation>
     );
 };
