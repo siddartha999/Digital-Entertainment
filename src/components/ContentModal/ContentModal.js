@@ -7,6 +7,7 @@ import "./ContentModal.css";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
+import Rating from '@material-ui/lab/Rating';
 
 export const img_300 = "https://image.tmdb.org/t/p/w300";
 export const unavailable =
@@ -144,6 +145,7 @@ const ContentModal = (props) => {
                     </span>
                   </div>
                   <div className="ContentModal-trailer-button-wrapper">
+                    <Rating name="size-small" defaultValue={Math.round(props.voteAverage) / 2} precision={0.5} size="small" />
                     <Button
                         variant="contained"
                         startIcon={<YouTubeIcon />}

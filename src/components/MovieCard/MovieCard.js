@@ -9,7 +9,7 @@ const MovieCard = (props) => {
     const poster = props.poster;
     //console.log(props);
     return (
-        <ContentModal className="MovieCard" id={props.id} mediaType={props.mediaType}>
+        <ContentModal className="MovieCard" id={props.id} mediaType={props.mediaType} voteAverage={props.voteAverage}>
             <img src={poster ? `${IMAGE_URL}${poster}` : IMAGE_PLACEHOLDER_URL} alt={props.title} className="MovieCard-image"/>
         </ContentModal>
     );

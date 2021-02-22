@@ -65,7 +65,7 @@ const Shows = (props) => {
                         title={item.title || item.name}
                         date={item.first_air_date || item.release_date}
                         mediaType={item.media_type ? item.media_type : isMovies ? "movie" : "tv"}
-                        vote_average={item.vote_average}
+                        voteAverage={item.vote_average}
                     />
                 )}
             </div>

@@ -3,7 +3,12 @@
     color: white;
 }
 
-.MuiBottomNavigation-root .MuiBottomNavigationAction-root.active
+.App .MuiBottomNavigation-root .MuiBottomNavigationAction-root.active
 {
     color: coral;
+}
+
+.MuiBottomNavigation-root .MuiBottomNavigationAction-root.Mui-selected
+{
+    color: white;
 }
