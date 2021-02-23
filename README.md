@@ -6,7 +6,6 @@ Inspired by: https://www.youtube.com/watch?v=vxUfx4aM5d8
 
 This project was bootstrapped with Create React App.
 
-https://user-images.githubusercontent.com/37662337/108874617-53b0e680-7622-11eb-9487-d45c049d4f8e.png
 
 https://user-images.githubusercontent.com/37662337/108874753-79d68680-7622-11eb-8fc4-0715ce040ced.png
 
